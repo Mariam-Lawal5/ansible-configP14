@@ -59,3 +59,59 @@ sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf sudo yum install mysql -y
 Learn how to install Jenkins here
 
 Learn how to install artifactory here
+
+# Jekins file for Quick Task
+=============================================
+ ```
+ pipeline {
+  agent any
+
+  stages {
+      stage("Initial cleanup") {
+        steps {
+         dir("${WORKSPACE}") {
+              deleteDir()
+            }
+          }
+        }
+     
+    stage('Build') {
+      steps {
+        script {
+          sh 'echo "Building Stage"'
+        }
+      }
+    }
+
+    stage('Test') {
+      steps {
+        script {
+          sh 'echo "Testing Stage"'
+        }
+      }
+    }
+    
+    stage('Package') {
+      steps {
+        script {
+          sh 'echo "Packaging App"'
+        }
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        script {
+          sh 'echo "Deploying to Dev"'
+        }
+      }
+    }
+
+    stage("Clean Up") {
+      steps {
+        cleanWs()
+            }
+          }
+        }
+}
+```

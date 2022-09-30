@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-      ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
+      ANSIBLE-CONFIGP14="${WORKSPACE}/deploy/ansible.cfg"
     }
 
   parameters {

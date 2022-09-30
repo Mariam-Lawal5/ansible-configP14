@@ -1,10 +1,14 @@
 pipeline {
   agent any
 
- environment {
+  environment {
       ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
     }
-    
+
+  parameters {
+      string(name: 'inventory', defaultValue: 'dev',  description: 'This is the inventory file for the environment to deploy configuration')
+    }
+
   stages{
       stage("Initial cleanup") {
           steps {
@@ -16,7 +20,7 @@ pipeline {
 
       stage('Checkout SCM') {
          steps{
-            git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/Mariam-Lawal5/ansible-configP14.git'
+            git branch: 'main', url: 'https://github.com/Mariam-Lawal5/ansible-configP14.git'
          }
        }
 
@@ -39,6 +43,5 @@ pipeline {
         }
       }
    }
-  }
 
 }
